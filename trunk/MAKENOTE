@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Instructions to access this from scratch
+#     svn co -N svn+ssh://svn.cern.ch/reps/tdr2 myDir
+#     cd myDir
+#     svn update utils
+#     svn update -N notes
+#     svn update notes/AN-13-113
+
+# Working with this:
+#     cd myDir/notes/AN-13-113/trunk
+#     MAKENOTE
+
+type=$1
+
+eval `../../tdr runtime -sh`
+
+
+
+
+if [ "$type" == 'pas' ]; then
+    tdr --style=pas b temporary-pas
+else
+    tdr --style=an b AN-16-219
+fi
+
+
+
+
