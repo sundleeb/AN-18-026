@@ -2,8 +2,9 @@
 
 ## Setup
 
+Please clone a copy in your own github account
 ```
-clone https://github.com/LPC-DM-AN/AN-18-026/tree/master into your github account
+git clone https://github.com/LPC-DM-AN/AN-18-026/tree/master
 ```
 
 log in to lxplus, go your public area
@@ -15,6 +16,9 @@ svn update -N notes
 svn update notes/AN-18-026
 cd notes/AN-18-026
 git init
+```
+Rebase the clone version in your github account to the local version
+```
 git pull https://github.com/SiewYan/AN-18-026.git master
 ```
 
