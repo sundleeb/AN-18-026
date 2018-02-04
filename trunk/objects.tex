@@ -1,0 +1,133 @@
+\clearpage
+\section{Physics Objects}
+All major physics objects are used in this analysis to identify
+signal-like events, to suppress backgrounds and to define control
+regions in data for background estimation.  For leptons, photons, and taus, we
+adhere to CMS POG endorsed recommendations. 
+As jets drive our analysis selection, we have made choices which optimize the sensitivity of the analysis.
+A summary of all physics objects and the selection requirements imposed on them are described below, followed by a section on identifying events with Higgs boson candidates. 
+
+\subsection{\MET}\label{subsec:MET}
+The \MET used in the analysis is computed by taking the negative vector sum of the transverse momenta of all PUPPI-weighted particle flow candidates reconstructed in a given event.
+%, weighted with weights calculated by the Pile-Up Per Particle Identification (PUPPI~\cite{puppi}) algorithm. 
+Corrections to the momenta of jets reconstructed in the event are further propagated to the \MET (Type-1 corrections).
+
+To mimic the \MET in the signal regions, control regions are constructed by selecting either a lepton, photon or pairs of
+leptons. These correspond to regions where either $\gamma$+jets production, $W$ boson production or $Z$ production is dominant.
+The hadronic recoil against the bosons can be computed by removing the $p_T$ of the leptons and photons from the \MET computation.
+Formally, the recoil is given by
+
+\begin{gather}
+  \vec{U} = \vec{\MET} + \vec{p}_{T}^{\ell\ell,\ell,\gamma}
+\end{gather}
+
+where the last $\vec{p}_T$ term is 1) dilepton, 2) lepton, or 3) photon $\vec{p}_T$, depending on the control region.
+
+In the case of Z$\rightarrow\nu\nu$ decays, $\vec{U}=\vec{\MET}$. In this sense, the recoil in the control regions
+can be used to mimic the \MET in Z$\rightarrow\nu\nu$ events that pass the signal selection.
+
+Events in data can end up with large spurious \MET due do detector noise and beam backgrounds. In order to remove these events several \MET filters, as listed below, 
+have been recommended by the JetMET POG~\cite{METFILTERS_TWIKI} and have been implemented in the analysis.
+
+\begin{itemize}
+\item HBHE Noise Filter
+\item HBHEIso Noise Filter
+\item ECAL Dead Cells Trigger Primitive Filter
+\item Global Beam Halo Tight Filter
+\item EE Bad SC Filter
+\item Good Vertex Filter (At least one good primary vertex in the event)
+\item Charged Hadron Track Resolution Filter
+\item Muon Bad Track Filter
+\end{itemize}
+
+
+\subsection{AK4 Jets}\label{jet}
+
+Jets used in the analysis are reconstructed by clustering PUPPI-weighted particle flow candidates in the event using the anti-$k_T$ algorithm \cite{Cacciari:2008gp} with a distance parameter of 0.4. To mitigate the effect of pileup, charged hadrons that do not arise from the primary vertex are removed (CHS). 
+% the PUPPI algorithm is used to weight the particle flow candidates prior jet clustering.
+Jets are corrected for pileup by using the event-by-event energy density (L1FastJet corrections). 
+Further corrections are applied as a function of jet pseudorapidity($\eta$) and transverse momentum (L2,L3 corrections). 
+Further residual jet energy corrections are applied to jets in data to match their response with the simulation (L2L3Residual).
+These corrections have been derived on AK4 CHS jets~\cite{JEC_TWIKI} and are specifically the version \verb|Summer16_23Sep2016V4|.
+Narrow jets considered in the analysis are required to have $p_T$ larger than 30 GeV, $|\eta| < 4.5$ and must pass the standard loose jet identification criteria \cite{TWIKI-JETID}.
+In regions where a lepton or photon is required, we reject a jet if $\Delta R(\text{jet},\ell)<0.4$ or $\Delta R(\text{jet},\gamma)<0.4$, respectively.
+% Fat jets are required to have $p_T$ larger than 200 GeV, $|\eta| < 2.5$. In order to identify fat jets originated by the hadronization of the top quark decay products, top-tagging techniques are employed. Different techniques, such as groomed jet masses and substructure observables, have been considered to identify heavy objects which fragment into three prongs, i.e. top quark decays. 
+
+
+\subsection{CA15 Fat Jets}\label{sec:fatjets}
+To identify the top quark, we cluster jets from PUPPI-weighted PF candidates using the Cambridge-Aachen algorithm with a distance parameter of $1.5$. 
+In regions where a lepton or photon is required, we reject a fat jet if $\Delta R(\text{jet},\ell)<1.5$ or $\Delta R(\text{jet},\gamma)<1.5$.
+Furthermore, to remove jets due to HCAL noise or mis-measurement, we require a fat jet pass the tight jet ID requirements described in~\cite{CMS_AN_2016-473}.
+Like AK4 jets, CA15 fat jets have L1FastJet, L2, L3, and L2L3Residual jet energy corrections applied~\cite{JEC_TWIKI}. 
+Since no such corrections have been derived for CA15 jets, we use the corrections derived using AK8 PUPPI jets.
+
+Grooming methods attempt to remove soft and wide angle radiation inside a jet, produced by pileup interactions, underlying events, or parton shower activity. In this analysis, the softdrop~\cite{msd} method has been used. The grooming is done with the parameters $Z_{cut} = 0.15$,  $\beta = 1$, which were chosen to optimize the resolution of the mass after grooming ($m_{SD}$). We require Higgs-tagged jets to reside in a $m_{SD}$ window of $[100,150]$ GeV.
+
+
+
+\subsection{Muons}
+\label{subsec:muons}
+
+Events containing muons are rejected in the analysis to suppress electroweak backgrounds. 
+To be considered a ``loose'' muon, an object must pass:
+\begin{itemize}
+  \item $p_T>10$ GeV
+  \item $|\eta|<2.4$
+  \item Loose ID and isolation requirements \cite{CMS-MUO-TWIKI-IDLOOSE}
+\end{itemize}
+
+To develop control regions for irreducible backgrounds, we employ selections that rely on muons.
+For the purposes of selection, a ``tight'' muon must pass the following selection:
+\begin{itemize}
+  \item $p_T>20$ GeV
+  \item $|\eta|<2.4$
+  \item Tight ID and isolation requirements \cite{CMS-MUO-TWIKI-IDTIGHT}
+\end{itemize}
+
+To account for differences in muon reconstruction and identification between data and simulation, an event scale factor is applied to MC. The derivation of this SF and the corresponding systematic is described in~\cite{CMS_AN_2016-473}
+
+\subsection{Electrons}
+\label{subsec:electrons}
+
+As with muons, we use two definitions of electrons, for the purposes of veto and selection.
+To be considered a ``loose'' electron, an object must pass:
+\begin{itemize}
+  \item $p_T>10$ GeV
+  \item $|\eta|<2.5$
+  \item Loose identification requirements \cite{CMS-EGM-TWIKI-ELEID}
+\end{itemize}
+``Tight'' electrons must pass the following cuts:
+\begin{itemize}
+  \item $p_T>40$ GeV
+  \item $|\eta|<2.5$
+  \item Tight identification requirements \cite{CMS-EGM-TWIKI-ELEID}
+\end{itemize}
+
+Whenever we refer to ``loose'' leptons for the purpose of selection (for the dilepton control regions), loose requirements are the same as the veto definition given above.
+
+Once again, an event scale factor is applied to account for differences in electron reconstruction and ID between data and MC, as described in~\cite{CMS_AN_2016-473}.
+
+\subsection{Photons}
+\label{subsec:photons}
+Like leptons, two definitions of photons are employed. For vetoes, we use:
+\begin{itemize}
+  \item $p_T>15$ GeV
+  \item $|\eta|<2.5$
+  \item Loose ID and isolation requirements \cite{CMS-PHO-TWIKI-ID}
+\end{itemize}
+%Finally, tight photons are defined as:
+%\begin{itemize}
+%  \item $p_T>175$ GeV
+%  \item $|\eta|<1.4442$
+%  \item Medium ID and isolation requirements \cite{CMS-PHO-TWIKI-ID}
+%\end{itemize}
+
+\subsection{Taus}
+\label{subsec:taus}
+
+A loose selection is applied to reject taus:
+\begin{itemize}
+  \item $p_T > 18$ GeV, $|\eta| < 2.3$
+  \item New DecayModeFinding
+  \item MVA-based very loose isolation provided by the POG~\cite{CMS-TAU-TWIKI-ISO}. The specific chosen working point is \verb|byVLooseIsolationMVArun2v1DBnewDMwLT|.
+\end{itemize}
