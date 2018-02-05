@@ -8,7 +8,7 @@ As jets drive our analysis selection, we have made choices which optimize the se
 A summary of all physics objects and the selection requirements imposed on them are described below, followed by a section on identifying events with Higgs boson candidates. 
 
 \subsection{\MET}\label{subsec:MET}
-The \MET used in the analysis is computed by taking the negative vector sum of the transverse momenta of all PUPPI-weighted particle flow candidates reconstructed in a given event.
+The \MET used in the analysis is computed by taking the negative vector sum of the transverse momenta of all particle flow candidates reconstructed in a given event.
 %, weighted with weights calculated by the Pile-Up Per Particle Identification (PUPPI~\cite{puppi}) algorithm. 
 Corrections to the momenta of jets reconstructed in the event are further propagated to the \MET (Type-1 corrections).
 
@@ -43,7 +43,7 @@ have been recommended by the JetMET POG~\cite{METFILTERS_TWIKI} and have been im
 
 \subsection{AK4 Jets}\label{jet}
 
-Jets used in the analysis are reconstructed by clustering PUPPI-weighted particle flow candidates in the event using the anti-$k_T$ algorithm \cite{Cacciari:2008gp} with a distance parameter of 0.4. To mitigate the effect of pileup, charged hadrons that do not arise from the primary vertex are removed (CHS). 
+Jets used in the analysis are reconstructed by clustering particle flow candidates in the event using the anti-$k_T$ algorithm \cite{Cacciari:2008gp} with a distance parameter of 0.4. To mitigate the effect of pileup, charged hadrons that do not arise from the primary vertex are removed (CHS). 
 % the PUPPI algorithm is used to weight the particle flow candidates prior jet clustering.
 Jets are corrected for pileup by using the event-by-event energy density (L1FastJet corrections). 
 Further corrections are applied as a function of jet pseudorapidity($\eta$) and transverse momentum (L2,L3 corrections). 
@@ -55,13 +55,14 @@ In regions where a lepton or photon is required, we reject a jet if $\Delta R(\t
 
 
 \subsection{CA15 Fat Jets}\label{sec:fatjets}
-To identify the top quark, we cluster jets from PUPPI-weighted PF candidates using the Cambridge-Aachen algorithm with a distance parameter of $1.5$. 
+To identify the top quark, we cluster jets from PF candidates using the Cambridge-Aachen algorithm with a distance parameter of $1.5$. 
 In regions where a lepton or photon is required, we reject a fat jet if $\Delta R(\text{jet},\ell)<1.5$ or $\Delta R(\text{jet},\gamma)<1.5$.
 Furthermore, to remove jets due to HCAL noise or mis-measurement, we require a fat jet pass the tight jet ID requirements described in~\cite{CMS_AN_2016-473}.
 Like AK4 jets, CA15 fat jets have L1FastJet, L2, L3, and L2L3Residual jet energy corrections applied~\cite{JEC_TWIKI}. 
-Since no such corrections have been derived for CA15 jets, we use the corrections derived using AK8 PUPPI jets.
+Since no such corrections have been derived for CA15 jets, we use the corrections derived using AK8 PF jets.
 
-Grooming methods attempt to remove soft and wide angle radiation inside a jet, produced by pileup interactions, underlying events, or parton shower activity. In this analysis, the softdrop~\cite{msd} method has been used. The grooming is done with the parameters $Z_{cut} = 0.15$,  $\beta = 1$, which were chosen to optimize the resolution of the mass after grooming ($m_{SD}$). We require Higgs-tagged jets to reside in a $m_{SD}$ window of $[100,150]$ GeV.
+Grooming methods attempt to remove soft and wide angle radiation inside a jet, produced by pileup interactions, underlying events, or parton shower activity. In this analysis, the softdrop~\cite{msd} method has been used. The grooming is done with the parameters $Z_{cut} = 0.15$,  $\beta = 1$, which were chosen to optimize the resolution of the mass after grooming ($m_{SD}$). We require Higgs-tagged jets to be above $m_{SD} >$ 25 GeV.
+%to reside in a $m_{SD}$ window of $[100,150]$ GeV.
 
 
 
